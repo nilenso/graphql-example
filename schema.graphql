@@ -1,0 +1,18 @@
+type User {
+  id: ID!
+  name: String!
+  organization: Organization!
+  workspaces: [Workspace]!
+}
+
+type Organization {
+  id: ID!
+  name: String!
+  workspaces: [Workspace]!
+}
+
+type Workspace {
+  id: ID!
+  slug: String!
+  organization: Organization!
+}
