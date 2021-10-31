@@ -16,3 +16,7 @@ type Workspace {
   slug: String!
   organization: Organization!
 }
+
+type Query {
+  getWorkspace(id: ID!): Workspace
+}

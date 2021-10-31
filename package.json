@@ -5,6 +5,17 @@
     "backend"
   ],
   "scripts": {
-    "start": "yarn --cwd backend start"
+    "run-server": "yarn --cwd backend start",
+    "run-client": "yarn --cwd frontend start",
+    "dev-server": "yarn --cwd backend dev",
+    "frontend-tests": "yarn --cwd frontend test",
+    "codegen": "graphql-codegen --config codegen.yml"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "2.2.2",
+    "@graphql-codegen/typescript-operations": "2.2.0",
+    "@graphql-codegen/typescript": "2.3.0",
+    "@graphql-codegen/typescript-resolvers": "2.4.0",
+    "@graphql-codegen/introspection": "2.1.0"
   }
 }

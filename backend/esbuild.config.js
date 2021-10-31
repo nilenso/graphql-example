@@ -1,5 +1,6 @@
 const esbuild = require("esbuild");
 const { nodeExternalsPlugin } = require("esbuild-node-externals");
+require("dotenv").config();
 
 esbuild
   .build({

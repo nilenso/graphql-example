@@ -1,22 +1,23 @@
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
+import * as fs from 'fs';
+import * as path from 'path';
 import express from 'express';
-import fs from 'fs';
 import morgan from 'morgan';
+import { buildSchema } from 'graphql';
 import { graphqlHTTP } from 'express-graphql';
-import {buildSchema} from 'graphql';
 
 dotenv.config();
 const isProduction = () => process.env.ENV === 'production';
 const port = process.env.PORT;
 
 const app = express();
-const schemaFile = process.env.SCHEMA_FILE;
+const schemaFile = path.join(process.env.SCHEMA_FILE);
 
 const schema = buildSchema(fs.readFileSync(schemaFile).toString());
 
 const root = { };
 
-app.use(morgan());
+app.use(morgan('combined'));
 
 app.use('/graphql', graphqlHTTP({
   schema: schema,

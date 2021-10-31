@@ -1,0 +1,15 @@
+overwrite: true
+schema: "./schema.graphql"
+generates:
+  frontend/src/models.ts:
+    plugins:
+      - "typescript"
+  backend/src/types/models.ts:
+    plugins:
+      - "typescript"
+  backend/src/types/resolvers.ts:
+    plugins:
+      - "typescript-resolvers"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"
