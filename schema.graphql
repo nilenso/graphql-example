@@ -1,22 +1,22 @@
 type User {
-  id: ID!
+  uuid: ID!
   name: String!
   organization: Organization!
   workspaces: [Workspace]!
 }
 
 type Organization {
-  id: ID!
+  uuid: ID!
   name: String!
   workspaces: [Workspace]!
 }
 
 type Workspace {
-  id: ID!
+  uuid: ID!
   slug: String!
   organization: Organization!
 }
 
 type Query {
-  getWorkspace(id: ID!): Workspace
+  workspace(uuid: ID!): Workspace
 }

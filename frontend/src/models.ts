@@ -13,32 +13,32 @@ export type Scalars = {
 
 export type Organization = {
   __typename?: 'Organization';
-  id: Scalars['ID'];
   name: Scalars['String'];
+  uuid: Scalars['ID'];
   workspaces: Array<Maybe<Workspace>>;
 };
 
 export type Query = {
   __typename?: 'Query';
-  getWorkspace?: Maybe<Workspace>;
+  workspace?: Maybe<Workspace>;
 };
 
 
-export type QueryGetWorkspaceArgs = {
-  id: Scalars['ID'];
+export type QueryWorkspaceArgs = {
+  uuid: Scalars['ID'];
 };
 
 export type User = {
   __typename?: 'User';
-  id: Scalars['ID'];
   name: Scalars['String'];
   organization: Organization;
+  uuid: Scalars['ID'];
   workspaces: Array<Maybe<Workspace>>;
 };
 
 export type Workspace = {
   __typename?: 'Workspace';
-  id: Scalars['ID'];
   organization: Organization;
   slug: Scalars['String'];
+  uuid: Scalars['ID'];
 };

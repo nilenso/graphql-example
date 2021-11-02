@@ -4,12 +4,12 @@ generates:
   frontend/src/models.ts:
     plugins:
       - "typescript"
-  backend/src/types/models.ts:
+  backend/src/types.ts:
     plugins:
       - "typescript"
-  backend/src/types/resolvers.ts:
-    plugins:
       - "typescript-resolvers"
+    config:
+      avoidOptionals: true
   ./graphql.schema.json:
     plugins:
       - "introspection"
