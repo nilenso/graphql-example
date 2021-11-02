@@ -7,6 +7,8 @@ generates:
   backend/src/types/models.ts:
     plugins:
       - "typescript"
+    config:
+      avoidOptionals: true
   backend/src/types/resolvers.ts:
     plugins:
       - "typescript-resolvers"

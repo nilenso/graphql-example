@@ -18,5 +18,5 @@ type Workspace {
 }
 
 type Query {
-  getWorkspace(id: ID!): Workspace
+  workspace(id: ID!): Workspace
 }

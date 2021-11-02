@@ -95,7 +95,7 @@
         "description": null,
         "fields": [
           {
-            "name": "getWorkspace",
+            "name": "workspace",
             "description": null,
             "args": [
               {

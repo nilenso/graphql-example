@@ -20,11 +20,11 @@ export type Organization = {
 
 export type Query = {
   __typename?: 'Query';
-  getWorkspace?: Maybe<Workspace>;
+  workspace: Maybe<Workspace>;
 };
 
 
-export type QueryGetWorkspaceArgs = {
+export type QueryWorkspaceArgs = {
   id: Scalars['ID'];
 };
 
