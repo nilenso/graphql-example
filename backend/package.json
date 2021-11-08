@@ -1,5 +1,5 @@
 {
-  "name": "serverless-graphql-example",
+  "name": "backend",
   "version": "1.0.0",
   "description": "An example graphql server meant to deployed on serverless infrastructure",
   "main": "./src/index.ts",
@@ -12,13 +12,16 @@
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.39.0",
-    "ajv": "^8.6.3",
+    "@aws/dynamodb-data-mapper": "^0.7.3",
+    "@aws/dynamodb-data-mapper-annotations": "^0.7.3",
+    "apollo-server": "^3.5.0",
+    "class-validator": "^0.13.1",
     "esbuild": "^0.13.9",
-    "express": "^4.17.1",
-    "express-graphql": "^0.12.0",
-    "graphql": "^16.0.0",
+    "graphql": "^15.3.0",
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.1.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

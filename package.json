@@ -5,8 +5,8 @@
     "backend"
   ],
   "scripts": {
-    "run-server": "yarn --cwd backend start",
-    "run-client": "yarn --cwd frontend start",
+    "server": "yarn --cwd backend start",
+    "client": "yarn --cwd frontend start",
     "dev-server": "yarn --cwd backend dev",
     "frontend-tests": "yarn --cwd frontend test"
   }
