@@ -34,7 +34,7 @@ export class IsUniqueConstraint<T> implements ValidatorConstraintInterface {
 
 export const IsUnique = <T>(
   modelClass: new () => T,
-  validationOptions: ValidationOptions
+  validationOptions?: ValidationOptions
 ) => {
   return (object: Object, propertyName: string) => {
     registerDecorator({

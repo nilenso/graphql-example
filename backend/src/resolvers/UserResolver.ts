@@ -3,12 +3,12 @@ import * as uuid from "uuid";
 
 import { Arg, Mutation, Resolver } from "type-graphql";
 import { mapper } from "../dynamodb";
-import { SignUpInputs, User } from "../models/User";
+import { SignUpInput, User } from "../models/User";
 
 @Resolver(User)
 export default class UserResolver {
   @Mutation(() => User)
-  async signUp(@Arg("params") params: SignUpInputs): Promise<User> {
+  async signUp(@Arg("params") params: SignUpInput): Promise<User> {
     const user = _.assign(new User(), _.merge(params, { id: uuid.v4() }));
     return mapper.put(user);
   }
