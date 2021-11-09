@@ -5,11 +5,19 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Home from "./pages/Home";
+import SignUp from "./pages/SignUp";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+
+const client = new ApolloClient({
+  uri: process.env.REACT_APP_GRAPHQL_SCHEMA,
+  cache: new InMemoryCache(),
+});
 
 const App = () => (
   <div className="app container">
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/sign-up" element={<SignUp />} />
     </Routes>
   </div>
 );
@@ -17,7 +25,9 @@ const App = () => (
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
