@@ -14,7 +14,7 @@ const client = new ApolloClient({
 });
 
 const App = () => (
-  <div className="app container">
+  <div className="app container mx-auto">
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/sign-up" element={<SignUp />} />
