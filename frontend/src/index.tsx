@@ -1,39 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./styles/index.css";
-import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { Button } from "./components/Button";
 
-import Home from "./pages/Home";
-import SignUp from "./pages/SignUp";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import "./styles/main.css";
 
-const client = new ApolloClient({
-  uri: process.env.REACT_APP_GRAPHQL_SCHEMA,
-  cache: new InMemoryCache(),
-});
-
-const App = () => (
-  <div className="app container mx-auto">
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/sign-up" element={<SignUp />} />
-    </Routes>
-  </div>
-);
-
-ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <ApolloProvider client={client}>
-        <App />
-      </ApolloProvider>
-    </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById("root")
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(<Button />, document.getElementById("root"));
