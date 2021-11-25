@@ -1,67 +1,42 @@
-import * as fs from "fs";
-import * as path from "path";
-import * as uuid from "uuid";
-import express from "express";
-import morgan from "morgan";
-import { buildSchema } from "graphql";
-import { graphqlHTTP } from "express-graphql";
-import { QueryResolvers } from "./types/resolvers";
-import DBClient from "./database/client";
+import { printSchemaWithDirectives } from "@graphql-tools/utils";
+import { ApolloServer } from "apollo-server";
+import { GraphQLSchema, lexicographicSortSchema } from "graphql";
+import path from "path";
+import "reflect-metadata";
+import "reflect-metadata";
+import { buildSchema } from "type-graphql";
+import UserResolver from "./resolvers/UserResolver";
+import WorkspaceResolver from "./resolvers/WorkSpaceResolver";
+import { outputFile } from "type-graphql/dist/helpers/filesystem";
 
-const isProduction = () => process.env.ENV === "production";
 const port = process.env.PORT;
 
-const app = express();
-const schemaFile = path.join(process.env.SCHEMA_FILE);
+export async function emitSchemaDefinitionWithDirectivesFile(
+  schemaFilePath: string,
+  schema: GraphQLSchema
+): Promise<void> {
+  const schemaFileContent = printSchemaWithDirectives(
+    lexicographicSortSchema(schema)
+  );
+  await outputFile(schemaFilePath, schemaFileContent);
+}
 
-const schema = buildSchema(fs.readFileSync(schemaFile).toString());
+const init = async () => {
+  const schema = await buildSchema({
+    resolvers: [UserResolver, WorkspaceResolver],
+    emitSchemaFile: path.resolve(__dirname, "schema.graphql"),
+  });
 
-const root: QueryResolvers = {
-  workspace: async (args) => {
-    console.log(args);
-    const client = DBClient();
-    try {
-      const workspace = await client.getItem({
-        TableName: "Workspaces",
-        Key: {
-          uuid: {
-            S: "blah",
-          },
-        },
-      });
-      console.log(workspace);
-    } catch (e) {
-      console.log(e);
-    }
+  await emitSchemaDefinitionWithDirectivesFile("schema.gql", schema);
 
-    return { slug: "Hello World!" };
-  },
+  const server = new ApolloServer({
+    schema,
+  });
+
+  const { url } = await server.listen(port);
+  console.log(`Started graphql server on: ${url}`);
+
+  return server;
 };
 
-app.use(morgan("combined"));
-
-app.use(
-  "/graphql",
-  graphqlHTTP({
-    schema: schema,
-    rootValue: root,
-    graphiql: !isProduction(),
-  })
-);
-
-app.listen(port, async () => {
-  const client = DBClient();
-  const id = uuid.v4();
-  console.log(id);
-  try {
-    await client.putItem({
-      TableName: "Workspaces",
-      Item: {
-        uuid: { S: id },
-      },
-    });
-  } catch (e) {
-    console.log(e);
-  }
-  console.log(`Started graphql server on port: ${port}`);
-});
+init();
