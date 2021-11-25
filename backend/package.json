@@ -8,7 +8,6 @@
     "start": "node dotenv/config dist/build.js",
     "prestart": "node esbuild.config.js",
     "dev": "nodemon -r dotenv/config src/index.ts",
-    "createTables": "ts-node -r dotenv/config src/createTables.ts",
     "test": "DOTENV_CONFIG_PATH=.env.test jest --setupFiles dotenv/config ./specs/setup.ts"
   },
   "dependencies": {
