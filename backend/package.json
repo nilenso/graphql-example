@@ -17,10 +17,12 @@
     "apollo-server": "^3.5.0",
     "class-validator": "^0.13.1",
     "esbuild": "^0.13.9",
+    "global": "^4.4.0",
     "graphql": "^15.3.0",
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
     "reflect-metadata": "^0.1.13",
+    "ts-node": "^10.4.0",
     "type-graphql": "^1.1.1",
     "uuid": "^8.3.2"
   },
